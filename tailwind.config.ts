@@ -19,6 +19,8 @@ const config = {
     },
     extend: {
       colors: {
+        newPrimary: 'hsl(0, 0%, 10%)', // Dark gray color
+        newPrimaryForeground: 'hsl(0, 0%, 90%)', // Light gray color for contrast
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
