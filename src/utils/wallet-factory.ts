@@ -6,7 +6,7 @@ import { Keypair } from '@solana/web3.js';
 import { Wallet } from 'ethers';
 import HDkey from 'hdkey';
 
-class WalletFactory {
+export default class WalletFactory {
     public static generateSeedPhrase(): string {
         return generateMnemonic();
     }

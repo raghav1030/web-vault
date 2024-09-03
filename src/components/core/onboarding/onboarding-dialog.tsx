@@ -5,6 +5,7 @@ import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuLab
 import React, { Dispatch, SetStateAction, useState } from 'react'
 import DialogProgress from './dialog-progress'
 import SelectBlockchain from './select-blockchain'
+import SeedPhraseWindow from './seed-phrase'
 
 const OnboardingDialog = ({ setIsDialogOpen, isDialogOpen }: { setIsDialogOpen: Dispatch<SetStateAction<boolean>>, isDialogOpen: boolean }) => {
   // const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -14,7 +15,10 @@ const OnboardingDialog = ({ setIsDialogOpen, isDialogOpen }: { setIsDialogOpen: 
   const handleBlockchainSelect = (blockchain: string) => {
     setSelectedBlockchain(blockchain);
     setIsDialogOpen(true);
+    setStep(step+1);
   };
+
+    
 
   return (
     <div className='w-full'>
@@ -25,7 +29,8 @@ const OnboardingDialog = ({ setIsDialogOpen, isDialogOpen }: { setIsDialogOpen: 
 
       <DialogDescription>
         {
-          step === 1 && <SelectBlockchain handleBlockchainSelect={handleBlockchainSelect} setIsDialogOpen={setIsDialogOpen}/>
+          step === 1 ? <SelectBlockchain handleBlockchainSelect={handleBlockchainSelect} setIsDialogOpen={setIsDialogOpen}/> :
+          step === 2 && <SeedPhraseWindow step={step} setStep={setStep} /> 
           
         }
       </DialogDescription>
