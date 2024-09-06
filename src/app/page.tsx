@@ -29,19 +29,19 @@ export default function Home() {
           </h2>
         </div>
 
-        <div className="relative flex flex-col items-center justify-center w-96 bg-clip-content">
-          <Card className="bg-transparent w-full p-4">
-            <div className="w-full flex flex-col gap-3">
-              <div>
-                <EvervaultCard />
-              </div>
-              <div className="flex flex-col justify-center items-center w-full gap-3">
-                <Button className="w-2/3">Import existing wallet</Button>
-
-                <Button className="w-2/3" onClick={() => setIsDialogOpen(!isDialogOpen)}>Create new wallet</Button>
-
+        <div className="relative flex flex-col items-center justify-center w-[30rem] h-[32rem] bg-clip-content">
+          <Card className="bg-transparent w-full h-full flex items-center justify-center ">
+            <div className="w-full h-full relative flex flex-col gap-3">
+              <div className="w-full h-full">
+                <EvervaultCard className="rounded-b-none" />
               </div>
             </div>
+              <div className="absolute bottom-10 flex flex-col justify-center items-center w-2/3 mx-auto gap-3">
+                <Button className="w-full text-sm bg-purple-950 text-white hover:bg-purple-950/90">Import existing wallet</Button>
+
+                <Button className="w-full text-sm bg-purple-950 text-white hover:bg-purple-950/90" onClick={() => setIsDialogOpen(!isDialogOpen)}>Create new wallet</Button>
+
+              </div>
           </Card>
         </div>
       </div>
