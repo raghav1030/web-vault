@@ -22,7 +22,7 @@ export default function Home() {
 
 
   return (
-    <div className="h-screen rounded-md bg-neutral-900 flex flex-col items-center relative w-screen">
+    <div className="h-screen rounded-md bg-purple-950/10 flex flex-col items-center relative w-screen">
       <ShootingStars />
       <StarsBackground />
       <div className="absolute flex flex-col items-center justify-center gap-5">
@@ -42,9 +42,9 @@ export default function Home() {
               </div>
             </div>
               <div className="absolute bottom-10 flex flex-col justify-center items-center w-2/3 mx-auto gap-3">
-                <Button className="w-full text-sm bg-purple-950 text-white hover:bg-purple-950/90">Import existing wallet</Button>
+                <Button className="w-full text-sm bg-purple-950/75 text-white hover:bg-purple-950/90">Import existing wallet</Button>
 
-                <Button className="w-full text-sm bg-purple-950 text-white hover:bg-purple-950/90" onClick={() => setIsDialogOpen(!isDialogOpen)}>Create new wallet</Button>
+                <Button className="w-full text-sm bg-purple-950/75 text-white hover:bg-purple-950/90" onClick={() => setIsDialogOpen(!isDialogOpen)}>Create new wallet</Button>
 
               </div>
           </Card>

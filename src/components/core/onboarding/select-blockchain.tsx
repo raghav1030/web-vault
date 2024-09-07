@@ -6,7 +6,7 @@ import { blockchains } from '@/data/blockchains'
 const SelectBlockchain = ({ setIsDialogOpen, handleBlockchainSelect }: { setIsDialogOpen: Dispatch<SetStateAction<boolean>>, handleBlockchainSelect: (blockchain: string) => void }) => {
 
     return (
-        <div className='w-full flex flex-col items-center justify-center gap-4'>
+        <div className='w-full flex flex-col items-center justify-center gap-6'>
             <h2 className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0">
               Select Network
             </h2>
@@ -15,7 +15,7 @@ const SelectBlockchain = ({ setIsDialogOpen, handleBlockchainSelect }: { setIsDi
             </h5>
             <div className='w-full px-5'>
 
-                <Command className="rounded-lg border relative mr-2 shadow-md w-full bg-zinc-800/20">
+                <Command className="rounded-lg border relative mr-2 shadow-md w-full bg-stone-800/20">
                     <CommandInput placeholder="Type to search Blockchain..." />
                     <CommandList  className='w-full py-2' >
                         <CommandEmpty>No results found.</CommandEmpty>
