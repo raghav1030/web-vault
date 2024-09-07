@@ -9,15 +9,20 @@ import { StarsBackground } from "@/components/ui/stars-background";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuShortcut, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import OnboardingDialog from "@/components/core/onboarding/onboarding-dialog";
+import { IoIosArrowRoundBack } from "react-icons/io";
 
 export default function Home() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [dialogStep, setDialogStep] = useState(1);
 
-
+  const handleDialogOpenChange = () => {
+    setDialogStep(1)
+    setIsDialogOpen(!isDialogOpen)
+  }
 
 
   return (
-    <div className="h-screen rounded-md bg-neutral-900 flex flex-col items-center relative w-full">
+    <div className="h-screen rounded-md bg-neutral-900 flex flex-col items-center relative w-screen">
       <ShootingStars />
       <StarsBackground />
       <div className="absolute flex flex-col items-center justify-center gap-5">
@@ -45,13 +50,14 @@ export default function Home() {
           </Card>
         </div>
       </div>
+      <div className="relative h-auto w-full">
 
-      {/* Dialog Component */}
-      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-        <DialogContent className="bg-newPrimary  w-full">
-          <OnboardingDialog setIsDialogOpen={setIsDialogOpen} isDialogOpen={isDialogOpen}></OnboardingDialog>
-        </DialogContent>
+        <Dialog open={isDialogOpen} onOpenChange={handleDialogOpenChange}>
+        
+
+          <OnboardingDialog dialogStep={dialogStep} setDialogStep={setDialogStep} setIsDialogOpen={setIsDialogOpen} isDialogOpen={isDialogOpen}></OnboardingDialog>
       </Dialog>
+        </div>
     </div>
   );
 }

@@ -1,9 +1,10 @@
 import { DialogTitle } from '@radix-ui/react-dialog'
 import React, { Dispatch } from 'react'
+import { IoIosArrowRoundBack } from 'react-icons/io'
 
 const DialogProgress = ({ step, setStep }: { step: number, setStep: Dispatch<React.SetStateAction<number>> }) => {
     return (
-        <div>
+        <div className='w-full flex flex-col items-start justify-start'>
 
             <div className='flex w-full '>
 

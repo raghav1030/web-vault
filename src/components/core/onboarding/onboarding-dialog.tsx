@@ -6,36 +6,49 @@ import React, { Dispatch, SetStateAction, useState } from 'react'
 import DialogProgress from './dialog-progress'
 import SelectBlockchain from './select-blockchain'
 import SeedPhraseWindow from './seed-phrase'
+import { IoIosArrowRoundBack } from "react-icons/io";
+import Warnings from './warnings'
 
-const OnboardingDialog = ({ setIsDialogOpen, isDialogOpen }: { setIsDialogOpen: Dispatch<SetStateAction<boolean>>, isDialogOpen: boolean }) => {
-  // const [isDialogOpen, setIsDialogOpen] = useState(false);
+type OnboardDialogProps = {
+  setIsDialogOpen: Dispatch<SetStateAction<boolean>>,
+  isDialogOpen: boolean,
+  dialogStep: number,
+  setDialogStep: Dispatch<SetStateAction<number>> 
+}
+const OnboardingDialog = ({ setIsDialogOpen, isDialogOpen, dialogStep, setDialogStep }: OnboardDialogProps ) => {
   const [selectedBlockchain, setSelectedBlockchain] = useState<string | null>(null);
-  const [step, setStep] = useState<number>(1);
 
   const handleBlockchainSelect = (blockchain: string) => {
     setSelectedBlockchain(blockchain);
-    setIsDialogOpen(true);
-    setStep(step+1);
+    setDialogStep(dialogStep + 1);
   };
-
     
 
   return (
-    <div className='w-full'>
-    {/* <DialogContent className="bg-newPrimary border-newPrimaryForeground w-full"> */}
-      <DialogHeader className='p-4'>
-       <DialogProgress step={step} setStep={setStep}></DialogProgress>
+    // < className='w-[90rem]'>
+<DialogContent className="bg-newPrimary max-w-[45rem]" style={{ width: "90rem !important" }}>
+  <div className='cursor-pointer'>
+
+{
+  dialogStep !== 1 &&
+<IoIosArrowRoundBack onClick={() => setDialogStep(dialogStep-1)}  className="absolute text-muted-foreground left-4 top-4 w-6 h-6" />
+}
+  </div>
+
+<DialogHeader className={` p-4  ${dialogStep === 1 && 'pt-0'}   w-full`}>
+  
+
+       <DialogProgress step={dialogStep} setStep={setDialogStep}></DialogProgress>
       </DialogHeader>
 
-      <DialogDescription>
+      <DialogDescription className='w-full p-4'>
         {
-          step === 1 ? <SelectBlockchain handleBlockchainSelect={handleBlockchainSelect} setIsDialogOpen={setIsDialogOpen}/> :
-          step === 2 && <SeedPhraseWindow step={step} setStep={setStep} /> 
-          
+          dialogStep === 1 ? <SelectBlockchain handleBlockchainSelect={handleBlockchainSelect} setIsDialogOpen={setIsDialogOpen}/> :
+          dialogStep === 2 ? <Warnings setStep={setDialogStep}></Warnings> :
+          dialogStep === 3 && <SeedPhraseWindow step={dialogStep} setStep={setDialogStep} /> 
         }
       </DialogDescription>
-     {/* </DialogContent> */}
-    </div>
+     </DialogContent> 
   )
 }
 
