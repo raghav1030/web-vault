@@ -2,11 +2,12 @@ import { Button } from '@/components/ui/button'
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandShortcut } from '@/components/ui/command'
 import React, { Dispatch, SetStateAction } from 'react'
 import { blockchains } from '@/data/blockchains'
+import Image from 'next/image'
 
 const SelectBlockchain = ({ setIsDialogOpen, handleBlockchainSelect }: { setIsDialogOpen: Dispatch<SetStateAction<boolean>>, handleBlockchainSelect: (blockchain: string) => void }) => {
 
     return (
-        <div className='w-full flex flex-col items-center justify-center gap-6'>
+        <div className='w-full flex flex-col items-center justify-center gap-6 '>
             <h2 className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0">
               Select Network
             </h2>
@@ -25,11 +26,15 @@ const SelectBlockchain = ({ setIsDialogOpen, handleBlockchainSelect }: { setIsDi
                                 {
                                   blockchains.map((blockchain, key) => (
                                     <CommandItem 
-                                      className='command-item w-full h-12' 
+                                      className='command-item w-full  h-12' 
                                       key={key} 
                                       onSelect={() => handleBlockchainSelect(blockchain.value)}
                                     >
-                                      <span>{blockchain.label}</span>
+                                      <span className='flex justify-start items-center gap-3'>
+                                      <Image src={blockchain.logo} alt={blockchain.label} width={25} height={25} ></Image>
+                                       <h3 className="scroll-m-20 text-md font-medium ">
+                                      {blockchain.label}</h3>
+                                      </span>
                                       <CommandShortcut>{blockchain.value}</CommandShortcut>
                                     </CommandItem>
                                   ))
@@ -38,6 +43,9 @@ const SelectBlockchain = ({ setIsDialogOpen, handleBlockchainSelect }: { setIsDi
                         </CommandGroup>
                     </CommandList>
                 </Command>
+            </div>
+            <div className=''>
+
             </div>
         </div>
     )

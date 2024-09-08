@@ -26,7 +26,7 @@ const OnboardingDialog = ({ setIsDialogOpen, isDialogOpen, dialogStep, setDialog
 
   return (
     // < className='w-[90rem]'>
-<DialogContent className="bg-stone-950 max-w-[45rem]" style={{ width: "90rem !important" }}>
+<DialogContent className="bg-stone-950 max-w-[45rem]  h-screen" >
   <div className='cursor-pointer'>
 
 {

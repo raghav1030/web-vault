@@ -6,6 +6,7 @@ import { Label } from '@/components/ui/label'
 import WalletFactory from '@/utils/wallet-factory'
 import React, { useEffect, useState } from 'react'
 import toast, { Toaster, ToastBar } from 'react-hot-toast';
+import { FaExternalLinkAlt } from "react-icons/fa";
 
 
 const SeedPhraseWindow = ({ step, setStep }: { step: Number, setStep: React.Dispatch<React.SetStateAction<number>> }) => {
@@ -50,8 +51,13 @@ const SeedPhraseWindow = ({ step, setStep }: { step: Number, setStep: React.Disp
     </h2>
     <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight">
         Save these words in a safe place.</h3>
-        <h4 onClick={() => setStep(2)} className="scroll-m-20 text-xl font-semibold tracking-tight text-red-800 cursor-pointer ">
-        Read the warnings again</h4>
+        <h4 onClick={() => setStep(2)} className="scroll-m-20 text-xl font-semibold tracking-tight text-red-800 cursor-pointer flex items-center justify-center gap-2 ">
+          <p>
+
+        Read the warnings again 
+          </p>
+        <span><FaExternalLinkAlt className='w-4 h-4' />
+        </span></h4>
       </div>
       <Card onClick={copyToClipboard} className="w-full flex flex-col  justify-center gap-2 p-4 bg-zinc-800/10 hover:bg-zinc-800/35 ">
         <div className="grid grid-cols-3 gap-4 cursor-pointer border-b border-dashed border-gray-700 pb-3">
@@ -65,16 +71,16 @@ const SeedPhraseWindow = ({ step, setStep }: { step: Number, setStep: React.Disp
           ))}
         </div>
 
-        <p className="text-sm text-muted-foreground text-center mt-1">Click anywhere on this card to copy your secret recovery phrase</p>
+        <p className="text-sm text-muted-foreground text-center mt-1 cursor-pointer">Click anywhere on this card to copy your secret recovery phrase</p>
 
       </Card>
 
       
-        <div className="mt-4 space-x-2">
+        <div className="mt-4 space-x-2 flex justify-center items-center">
         <Checkbox id="terms" checked={isChecked} onCheckedChange={handleCheckboxChange} />
           <Label
             htmlFor="terms"
-            className="text-md font-medium text-white  peer-disabled:cursor-not-allowed peer-disabled:opacity-70 leading-7 [&:not(:first-child)]:mt-6"
+            className="text-md font-medium text-white cursor-pointer peer-disabled:cursor-not-allowed peer-disabled:opacity-70 leading-none "
             >
             I've saved my secret recover phrase.
           </Label>
