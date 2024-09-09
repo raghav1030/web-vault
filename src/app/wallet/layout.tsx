@@ -1,8 +1,13 @@
-import React from 'react'
 
-const layout = () => {
+import React from 'react';
+
+interface LayoutProps {
+  children: React.ReactNode;
+}
+
+const layout = ({ children }: LayoutProps) => {
   return (
-    <div>layout</div>
+    <div>{children  }</div>
   )
 }
 

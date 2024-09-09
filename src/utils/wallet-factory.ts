@@ -18,7 +18,7 @@ type Account = {
 };
 
 export default class WalletFactory {
-  private static accounts: Account[] = [];
+  private static accounts: Account[] = this.loadAccountsFromStorage();
 
   // Generate a new seed phrase
   public static generateSeedPhrase(): string {
@@ -65,7 +65,7 @@ export default class WalletFactory {
     }
   }
 
-  // Add a new account and save the state locally
+  // Add a new account and save it in localStorage
   public static addAccount(accountName: string, seedPhrase: string, blockchains: Blockchain[]): Account {
     const wallets: WalletInfo[] = blockchains.map((blockchain, index) => {
       const wallet = this.generateKeyPair(blockchain, seedPhrase, index);
@@ -78,6 +78,7 @@ export default class WalletFactory {
 
     const account: Account = { accountName, wallets };
     this.accounts.push(account);
+    this.saveAccountsToStorage();
     return account;
   }
 
@@ -99,7 +100,7 @@ export default class WalletFactory {
     return this.accounts;
   }
 
-  // Add a new wallet to an existing account
+  // Add a new wallet to an existing account and save in localStorage
   public static addWalletToAccount(accountName: string, blockchain: Blockchain, seedPhrase: string): WalletInfo {
     const account = this.accounts.find((acc) => acc.accountName === accountName);
     if (!account) {
@@ -115,6 +116,18 @@ export default class WalletFactory {
     };
 
     account.wallets.push(walletInfo);
+    this.saveAccountsToStorage();
     return walletInfo;
+  }
+
+  // Save accounts to localStorage
+  private static saveAccountsToStorage() {
+    localStorage.setItem('accounts', JSON.stringify(this.accounts));
+  }
+
+  // Load accounts from localStorage
+  private static loadAccountsFromStorage(): Account[] {
+    const accountsJson = localStorage.getItem('accounts');
+    return accountsJson ? JSON.parse(accountsJson) : [];
   }
 }

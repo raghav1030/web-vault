@@ -45,7 +45,7 @@ const OnboardingDialog = ({ setIsDialogOpen, isDialogOpen, dialogStep, setDialog
         {
           dialogStep === 1 ? <SelectBlockchain handleBlockchainSelect={handleBlockchainSelect} setIsDialogOpen={setIsDialogOpen}/> :
           dialogStep === 2 ? <Warnings setStep={setDialogStep}></Warnings> :
-          dialogStep === 3 && <SeedPhraseWindow step={dialogStep} setStep={setDialogStep} /> 
+          dialogStep === 3 && <SeedPhraseWindow selectedBlockchain={selectedBlockchain} step={dialogStep} setStep={setDialogStep} /> 
         }
       </DialogDescription>
      </DialogContent> 
