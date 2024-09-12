@@ -5,18 +5,27 @@ import { GoArrowDown, GoArrowUp } from "react-icons/go";
 import { IoIosSwap } from 'react-icons/io';
 import WalletFactory from '@/utils/wallet-factory';
 import { Blockchain } from "@/types/core";
+import { AccountSelectDropdown } from '@/components/core/wallet/account-select-dropdown';
 
 const Wallet = () => {
   const [accounts, setAccounts] = useState<any[]>([]);
-
+  const [selectedAccount, setSelectedAccount] = useState<any>(null);
+  const [selectedWallet, setSelectedWallet] = useState<any>(null);
+  const allAccounts = WalletFactory.getAccounts();
+  
   useEffect(() => {
-    const allAccounts = WalletFactory.getAccounts();
     setAccounts(allAccounts);
-  }, []);
+    console.log(allAccounts);
+    setSelectedAccount(allAccounts?.[0]); // Select the first account by default
+    setSelectedWallet(allAccounts[0]?.wallets?.[0]); // Select the first wallet by default
+  }, [allAccounts]);
 
   return (
     <div className='flex flex-col'>
-      
+
+
+      <div className='flex flex-col items-center justify-center gap-3'>
+        <AccountSelectDropdown accounts={accounts} selectedAccount={selectedAccount} selectedWallet={selectedWallet}/>
 
       <div className='flex flex-col items-center justify-center'>
         <h2>$0.00</h2>
@@ -24,6 +33,7 @@ const Wallet = () => {
           <p>$0.00</p>
           <p>0%</p>
         </div>
+      </div>
       </div>
 
       <div className='flex items-center justify-center'>

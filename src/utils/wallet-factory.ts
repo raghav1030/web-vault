@@ -6,13 +6,14 @@ import { Keypair } from '@solana/web3.js';
 import { Wallet } from 'ethers';
 import HDkey from 'hdkey';
 
-type WalletInfo = {
+export type WalletInfo = {
+  walletName: string
   blockchain: Blockchain;
   address: string;
   derivationPath: string;
 };
 
-type Account = {
+export type Account = {
   accountName: string;
   wallets: WalletInfo[];
 };
@@ -70,6 +71,7 @@ export default class WalletFactory {
     const wallets: WalletInfo[] = blockchains.map((blockchain, index) => {
       const wallet = this.generateKeyPair(blockchain, seedPhrase, index);
       return {
+        walletName: `Wallet ${index + 1}`,
         blockchain,
         address: this.getWalletAddress(wallet, blockchain),
         derivationPath: `${this.getBasePath(blockchain)}/${index}/0`
@@ -110,6 +112,7 @@ export default class WalletFactory {
     const walletNumber = account.wallets.length;
     const wallet = this.generateKeyPair(blockchain, seedPhrase, walletNumber);
     const walletInfo: WalletInfo = {
+      walletName: `Wallet ${walletNumber}`,
       blockchain,
       address: this.getWalletAddress(wallet, blockchain),
       derivationPath: `${this.getBasePath(blockchain)}/${walletNumber}/0`,
