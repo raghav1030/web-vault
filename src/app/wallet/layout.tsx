@@ -1,4 +1,5 @@
 
+import { AccountSidebar } from '@/components/core/wallet/account-sidebar';
 import React from 'react';
 
 interface LayoutProps {
@@ -7,7 +8,12 @@ interface LayoutProps {
 
 const layout = ({ children }: LayoutProps) => {
   return (
-    <div>{children  }</div>
+    <div className='w-full'>
+      <AccountSidebar>
+      {children  }
+      </AccountSidebar>
+      
+      </div>
   )
 }
 

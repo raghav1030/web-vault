@@ -1,8 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    images: {
-        domains: ['example.com'], // replace with the actual hostname
-      },
+  images: {
+    domains: ['api.dicebear.com'], // Allow images from Dicebear
+    dangerouslyAllowSVG: true,     // Allow SVGs
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+  },
 };
 
 export default nextConfig;

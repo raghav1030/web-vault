@@ -17,13 +17,12 @@ import { Account, WalletInfo } from "@/utils/wallet-factory"
 import { IoIosAdd } from "react-icons/io"
 
 type AccountSelectDropdownProps = {
-  accounts: any[],
   selectedAccount: Account,
   selectedWallet: WalletInfo,
 }
 
 
-export function AccountSelectDropdown({accounts, selectedAccount, selectedWallet} : AccountSelectDropdownProps) {
+export function AccountSelectDropdown({selectedAccount, selectedWallet} : AccountSelectDropdownProps) {
   console.log(selectedWallet)
   return (
     <DropdownMenu>
