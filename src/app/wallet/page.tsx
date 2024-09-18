@@ -21,7 +21,7 @@ const Wallet = () => {
   }, [allAccounts]);
 
   return (
-    <div className='flex flex-col'>
+    <div className='flex flex-col bg-purple-950/10 w-full  items-center'>
 
 
       <div className='flex flex-col items-center justify-center gap-3'>
@@ -44,7 +44,7 @@ const Wallet = () => {
 
       {accounts.length > 0 ? (
         accounts.map((account, index) => (
-          <div key={index} className='flex flex-col mt-4'>
+          <div key={index} className='flex max-w-7xl  flex-col mt-4'>
             <h3 className='font-bold text-lg'>Account: {account.accountName}</h3>
             {account.wallets.map((wallet: any, walletIndex: number) => (
               <div key={walletIndex} className='flex items-center justify-between mt-2 border-b pb-2'>
