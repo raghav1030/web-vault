@@ -21,7 +21,7 @@ const Wallet = () => {
   }, [allAccounts]);
 
   return (
-    <div className='flex flex-col bg-purple-950/10 w-full  items-center'>
+    <div className='flex flex-col  w-full  items-center'>
 
 
       <div className='flex flex-col items-center justify-center gap-3'>

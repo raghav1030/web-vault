@@ -125,7 +125,7 @@ export default class WalletFactory {
 
   // Save accounts to localStorage
   private static saveAccountsToStorage() {
-    localStorage.setItem('accounts', JSON.stringify(this.accounts));
+    // localStorage.setItem('accounts', JSON.stringify(this.accounts));
   }
 
   // Load accounts from localStorage
