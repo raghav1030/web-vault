@@ -76,9 +76,9 @@ export default class WalletFactory {
         address: this.getWalletAddress(wallet, blockchain),
         derivationPath: `${this.getBasePath(blockchain)}/${index}/0`
       };
-    });
+    }); 
 
-    const account: Account = { accountName, wallets };
+    const account: Account = { accountName, wallets,  };
     this.accounts.push(account);
     this.saveAccountsToStorage();
     return account;
@@ -125,7 +125,7 @@ export default class WalletFactory {
 
   // Save accounts to localStorage
   private static saveAccountsToStorage() {
-    // localStorage.setItem('accounts', JSON.stringify(this.accounts));
+    localStorage.setItem('accounts', JSON.stringify(this.accounts));
   }
 
   // Load accounts from localStorage

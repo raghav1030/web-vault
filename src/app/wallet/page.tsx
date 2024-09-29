@@ -1,3 +1,4 @@
+
 "use client";
 import React, { useEffect, useState } from "react";
 import ActionButton from "@/components/core/wallet/action-button";
@@ -6,7 +7,6 @@ import { IoIosAdd, IoIosSwap, IoMdCopy } from "react-icons/io";
 import WalletFactory, { Account } from "@/utils/wallet-factory";
 import { Blockchain } from "@/types/core";
 import {
-  AccountSelectDropdown,
   WalletSelectDropdown,
 } from "@/components/core/wallet/wallet-select-dropdown";
 import { Button } from "@/components/ui/button";
@@ -23,8 +23,10 @@ import {
 import { blockchains } from "@/data/blockchains";
 import Image from "next/image";
 import { LuCopy } from "react-icons/lu";
+import { useParams } from "next/navigation";
 
 const Wallet = () => {
+  const {accountNumber, walletNumber} = useParams();
   const [accounts, setAccounts] = useState<any[]>([]);
   const [selectedAccount, setSelectedAccount] = useState<any>(null);
   const [selectedWallet, setSelectedWallet] = useState<any>(null);
@@ -33,15 +35,19 @@ const Wallet = () => {
   const [availableNetworks, setAvailableNetworks] = useState<any[]>([]);
   const [availableWallet, setAvailableWallets] = useState<any[]>([]);
   useEffect(() => {
+    getAccount(accountNumber);
+    getWallet(walletNumber);
     setAccounts(allAccounts);
-    console.log(allAccounts);
-    setAvailableNetworks(
-      selectedAccount?.wallets.map((wallet) => wallet.blockchain)
-    );
-    setSelectedAccount(allAccounts?.[0]); // Select the first account by default
-    setSelectedWallet(allAccounts[0]?.wallets?.[0]); // Select the first wallet by default
-  }, [allAccounts]);
+  }, [allAccounts, accountNumber, walletNumber]);
 
+  const getWallet = (walletNumber: string) => {
+    const wallet = selectedAccount?.wallets.find((wallet) => wallet.walletNumber === walletNumber);
+    setSelectedWallet(wallet);
+  }
+  const getAccount = (accountNumber: string) => {
+    const account = accounts.find((account) => account.accountNumber === accountNumber);
+    setSelectedAccount(account);
+  }
   const getBlockchainIcon = (blockchain) => {
     const blockchainData = blockchains.find((b) => b.value === blockchain);
     console.log(blockchainData);
@@ -71,7 +77,7 @@ const Wallet = () => {
               className="rounded-full w-6 h-6"
             ></Image>
           </Button>
-          <WalletSelectDropdown
+          {/* <WalletSelectDropdown
             availableWallets={getAvailableWallets(selectedNetwork)}
             selectedWallet={selectedWallet}
           >
@@ -81,7 +87,7 @@ const Wallet = () => {
             >
               {selectedWallet?.walletName}
             </Button>
-          </WalletSelectDropdown>
+          </WalletSelectDropdown> */}
 
           <Button
             variant={"outline"}

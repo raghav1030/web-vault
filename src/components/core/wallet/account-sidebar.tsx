@@ -27,7 +27,7 @@ export function AccountSidebar({children} : SidebarProps) {
                 label: account.accountName,
                 href: `/dashboard/${index+1}/${account.wallets[0].address}`,
                 icon: (
-                  <div className="w-12 h-12 flex items-center justify-center rounded-full border border-purple-500/60 shadow-sm shadow-purple-900/10   bg-stone-950">
+                  <div onClick={() => router.redirect(`/wallet/${account?.}`)} className="w-12 h-12 flex items-center justify-center rounded-full border border-purple-500/60 shadow-sm shadow-purple-900/10   bg-stone-950">
                     <p className="text-purple-400 text-2xl text-center">
                       {account.accountName.split(" ")[0][0] + account.accountName.split(" ")[1][0]}
                     </p>
